@@ -1,0 +1,73 @@
+services:
+  angular-dev:
+    image: node:20-alpine
+    container_name: angular-dev
+    working_dir: /workspace
+    volumes:
+      - ./angular-projects:/workspace
+    ports:
+      - "4200:4200"
+    command: sh -c "apk add --no-cache git && npm install -g @angular/cli && sleep infinity"
+
+  nest-dev:
+    image: node:20-alpine
+    container_name: nest-dev
+    working_dir: /workspace
+    volumes:
+      - ./nest-projects:/workspace
+    ports:
+      - "5050:5050"
+    command: >
+      sh -c "apk add --no-cache git &&
+             npm install -g @nestjs/cli &&
+             sleep infinity"
+
+  node-dev:
+    image: node:20-alpine
+    container_name: node-dev
+    working_dir: /workspace
+    volumes:
+      - ./node-projects:/workspace
+    ports:
+      - "3001:3001"
+    command: sh -c "apk add --no-cache git && sleep infinity"
+
+  react-dev:
+    image: node:20-alpine
+    container_name: react-dev
+    working_dir: /workspace
+    volumes:
+      - ./react-projects:/workspace
+    ports:
+      - "3000:3000"
+    command: sh -c "apk add --no-cache git && npm install -g create-react-app && sleep infinity"
+
+  mysql-db:
+    image: mysql:8.0
+    container_name: mysql-db
+    restart: unless-stopped
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
+      MONGO_INITDB_DATABASE: ${MONGO_INITDB_DATABASE}
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+
+  mongodb:
+    image: mongo:6.0
+    container_name: mongodb
+    restart: unless-stopped
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: admin123
+      MONGO_INITDB_DATABASE: mydatabase
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+
+volumes:
+  mysql-data:
+  mongo-data:
