@@ -1,7 +1,8 @@
 # .gitignore
 .env
-
-
+.venv
+data
+faiss_index
 /dist
 /node_modules
 /build

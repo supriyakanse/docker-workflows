@@ -42,6 +42,26 @@ services:
       - "3000:3000"
     command: sh -c "apk add --no-cache git && npm install -g create-react-app && sleep infinity"
 
+  python-dev:
+    image: python:3.12-alpine
+    container_name: python-dev
+    working_dir: /workspace
+    volumes:
+      - ./python-projects:/workspace
+    ports:
+      - "8000:8000"
+    command: sh -c "apk add --no-cache git && sleep infinity"
+
+  python-final-dev:
+    image: python:3.12-alpine
+    container_name: python-final-dev
+    working_dir: /workspace
+    volumes:
+      - ./python-projects-final:/workspace
+    ports:
+      - "9000:9000"
+    command: sh -c "apk add --no-cache git && sleep infinity"
+
   mysql-db:
     image: mysql:8.0
     container_name: mysql-db
