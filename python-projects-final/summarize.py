@@ -3,7 +3,6 @@ import os
 from dotenv import load_dotenv
 load_dotenv()
 
-from langchain_openai import ChatOpenAI
 from langchain.prompts.prompt import PromptTemplate
 from langchain_community.llms import GPT4All
 
@@ -11,8 +10,6 @@ from langchain_community.llms import GPT4All
 OPENROUTER_KEY = os.getenv("OPENROUTER_API_KEY")
 
 def summarize_emails(emails, bullets=20):
-    if not OPENROUTER_KEY:
-        return "Please set OPENROUTER_API_KEY in your .env file. Get a free key at https://openrouter.ai/settings/keys"
     
     # Prepare combined email text
     parts = []

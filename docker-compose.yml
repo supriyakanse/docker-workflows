@@ -1,6 +1,6 @@
 services:
   angular-dev:
-    image: node:20-alpine
+    image: node:12-alpine
     container_name: angular-dev
     working_dir: /workspace
     volumes:

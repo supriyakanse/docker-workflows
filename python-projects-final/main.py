@@ -4,7 +4,6 @@ import datetime
 import json
 import os
 # summarize.py
-from langchain_community.llms import GPT4All
 
 from fetch_emails import fetch_emails_since
 from vectorstore import build_vectorstore_from_emails

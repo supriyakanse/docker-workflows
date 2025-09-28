@@ -17,7 +17,7 @@ def make_qa():
     qa = RetrievalQA.from_chain_type(
         llm=llm,
         chain_type="stuff",
-        retriever=vs.as_retriever(search_kwargs={"k": 4})
+        retriever=vs.as_retriever(search_kwargs={"k": 10})
     )
     return qa
 
