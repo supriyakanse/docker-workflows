@@ -5,3 +5,4 @@ faiss-cpu
 sentence-transformers
 python-dotenv
 beautifulsoup4
+langchain-huggingface
